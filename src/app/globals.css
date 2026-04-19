@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+:root {
+  /* Palette VAR Notaires — Aesop × Hermès × archives Cour de cassation */
+  --background: #F5F1EA;       /* Crème ivoire — papier vélin */
+  --foreground: #0F1417;       /* Anthracite profond — pas noir pur */
+  --surface: #EDE7DC;          /* Crème +1 — sections alternées */
+  --surface-2: #1A1F23;        /* Anthracite +1 — bandeaux dark */
+  --accent: #B89968;           /* Or terni — sceau notarial */
+  --accent-light: #D4B585;     /* Or patiné clair — hover */
+  --muted: #6B6357;            /* Gris taupe — secondaire sur clair */
+  --muted-dark: #8A8275;       /* Gris taupe clair — secondaire sur sombre */
+  --border: #DDD6C7;           /* Crème -1 — bordures discrètes */
+  --border-dark: #2C3338;      /* Anthracite +2 — bordures sur sombre */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
+  --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01" on, "cv11" on;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Focus accessible */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Scrollbar discrète */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Selection — encre sur papier */
+::selection { background: var(--foreground); color: var(--background); }
+
+/* Skip link */
+.skip-link {
+  position: absolute; top: -100%; left: 0; z-index: 100;
+  padding: 1rem; background: var(--foreground); color: var(--background); font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
+/* Sceau / filet décoratif */
+.line-accent {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Lien éditorial — soulignement gauche-droite au hover */
+.link-editorial {
+  position: relative;
+  display: inline;
+}
+.link-editorial::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.link-editorial:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Page transition — silencieuse */
+@keyframes pageReveal {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Hero — animations CSS pures */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes charReveal {
+  from { opacity: 0; transform: translate3d(0, 100%, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Hero — fadeInUp sans clipping (compat italiques avec descenders) */
+@keyframes fadeInUpHero {
+  from { opacity: 0; transform: translate3d(0, 28px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Reveal liturgique — IntersectionObserver */
+.reveal-initial { opacity: 0; }
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.animate-reveal-up { animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+@keyframes revealDown {
+  from { opacity: 0; transform: translate3d(0, -16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.animate-reveal-down { animation: revealDown 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+@keyframes revealMask {
+  from { clip-path: inset(100% 0 0 0); opacity: 1; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.animate-reveal-mask { animation: revealMask 1s cubic-bezier(0.76, 0, 0.24, 1) both; }
+.animate-reveal-mask.reveal-initial { opacity: 1; clip-path: inset(100% 0 0 0); }
+
+@keyframes revealScale {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-reveal-scale { animation: revealScale 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both; }
+
+/* Scrollbar horizontal invisible */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === ÉDITORIAL — Article body (Décodages) === */
+.editorial-body {
+  font-feature-settings: "kern", "liga", "onum", "ss01";
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  text-wrap: pretty;
+  orphans: 3;
+  widows: 3;
+}
+
+/* Chiffres tabulaires dans les chiffrés / dates / montants */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Acronymes (PACS, SCI, IFI, NFT, RGPD, VEFA) */
+abbr.acronym,
+.smallcaps {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+/* Drop cap — première lettre du premier paragraphe d'un article */
+.drop-cap::first-letter {
+  font-family: var(--font-fraunces, serif);
+  font-size: 5.2em;
+  line-height: 0.85;
+  float: left;
+  margin: 0.05em 0.12em -0.05em 0;
+  font-weight: 400;
+  font-feature-settings: "ss01";
+  color: var(--accent);
+}
+
+/* Pull quote asymétrique en marge */
+.pull-quote {
+  font-family: var(--font-fraunces, serif);
+  font-style: italic;
+  font-size: 1.65em;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--foreground);
+  border-left: 1px solid var(--accent);
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+@media (min-width: 1280px) {
+  .pull-quote.float-marge {
+    float: left;
+    width: 16rem;
+    margin: 0.5rem 2.5rem 1.5rem -7rem;
+    border-left: none;
+    border-top: 1px solid var(--accent);
+    padding: 1.25rem 0 0 0;
+    font-size: 1.4em;
+  }
+}
+
+/* Sidenotes Tufte — annotation en marge droite */
+.sidenote {
+  display: block;
+  font-family: var(--font-fraunces, serif);
+  font-style: italic;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--muted);
+  border-left: 1px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 0.85rem;
+  margin: 1rem 0;
+}
+
+@media (min-width: 1280px) {
+  .sidenote.float-right {
+    float: right;
+    clear: right;
+    width: 13rem;
+    margin: 0.4rem -14.5rem 0.5rem 1.5rem;
+    border-left: none;
+    border-top: 1px solid var(--accent);
+    padding: 0.5rem 0 0 0;
+  }
+}
+
+.sidenote-marker {
+  font-family: var(--font-fraunces, serif);
+  font-style: italic;
+  color: var(--accent);
+  vertical-align: super;
+  font-size: 0.75em;
+  margin-left: 0.1em;
+  font-feature-settings: "sups";
+}
+
+/* Glossaire — mot souligné pointillé */
+.glossary-term {
+  position: relative;
+  display: inline;
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.glossary-term:hover {
+  color: var(--accent);
+  border-bottom-color: var(--foreground);
+}
+
+/* Reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 60;
+  transform-origin: left center;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Image reveal au scroll — clip-path inset */
+.image-reveal {
+  clip-path: inset(8% 8%);
+  transform: scale(1.05);
+  transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image-reveal.is-visible {
+  clip-path: inset(0%);
+  transform: scale(1);
+}
+
+/* Curseur magnétique — élément attiré */
+.magnetic {
+  display: inline-flex;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Easings premium */
+.ease-expo-out { transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+.ease-expo-in-out { transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1); }
+
+/* TextReveal — line-by-line stagger */
+@keyframes textRevealLine {
+  from { opacity: 0; transform: translate3d(0, 110%, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.text-reveal-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.text-reveal-line > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 110%, 0);
+}
+
+.text-reveal-line.is-visible > span {
+  animation: textRevealLine 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
