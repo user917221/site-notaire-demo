@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import HeroVisual from "@/components/ui/HeroVisual";
 import Sceau from "@/components/ui/Sceau";
 import MagneticButton from "@/components/ui/MagneticButton";
+import NotarialSignature from "@/components/ui/NotarialSignature";
 
 export default function Hero() {
   // Mots avec délais individuels pour stagger
@@ -69,6 +70,13 @@ export default function Hero() {
                 </span>
               ))}
             </h1>
+
+            {/* Signature notariale — paraphe qui se dessine après le headline */}
+            <NotarialSignature
+              delay={1.6}
+              duration={2200}
+              className="mt-8 sm:mt-10 text-foreground/85 w-[280px] sm:w-[360px] lg:w-[420px] h-auto"
+            />
 
             {/* Sous-texte + CTAs */}
             <div className="mt-12 sm:mt-16 flex flex-col xl:flex-row xl:items-end xl:justify-between gap-10 xl:gap-12">
