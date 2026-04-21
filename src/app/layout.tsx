@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import GrainOverlay from "@/components/providers/GrainOverlay";
 import EditorialLoader from "@/components/providers/EditorialLoader";
 import CustomCursor from "@/components/providers/CustomCursor";
+import KonamiEasterEgg from "@/components/providers/KonamiEasterEgg";
 import { SITE } from "@/lib/constants";
 
 const inter = Inter({

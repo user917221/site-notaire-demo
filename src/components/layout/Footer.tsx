@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE, NAV_ITEMS } from "@/lib/constants";
 import Sceau from "@/components/ui/Sceau";
+import GravityWell from "@/components/ui/GravityWell";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -31,9 +32,11 @@ export default function Footer() {
             </p>
           </div>
           <div className="lg:col-span-5 flex flex-col justify-end">
-            {/* Sceau notarial */}
+            {/* Sceau notarial — gravity well */}
             <div className="hidden lg:block self-start mb-10 text-accent-light/50">
-              <Sceau size={120} />
+              <GravityWell strength={0.35} radius={260}>
+                <Sceau size={120} />
+              </GravityWell>
             </div>
             <a
               href={`tel:${SITE.contact.phone.replace(/\s+/g, "")}`}
