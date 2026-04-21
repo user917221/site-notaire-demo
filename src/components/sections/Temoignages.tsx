@@ -28,7 +28,7 @@ export default function Temoignages() {
             <li key={i}>
               <Reveal variant="up" delay={i * 0.1}>
                 <figure className="text-center">
-                  <span className="font-serif text-7xl text-accent leading-none block mb-6 select-none">
+                  <span className="font-serif text-7xl text-accent-ink leading-none block mb-6 select-none">
                     "
                   </span>
                   <blockquote

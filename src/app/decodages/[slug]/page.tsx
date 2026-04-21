@@ -111,7 +111,7 @@ export default async function DecodageArticlePage(
                 </Reveal>
 
                 <Reveal variant="up" delay={0.1}>
-                  <p className="smallcaps text-[12px] tracking-[0.18em] text-accent mb-6">
+                  <p className="smallcaps text-[12px] tracking-[0.18em] text-accent-ink mb-6">
                     {article.category}
                   </p>
                   <h1 className="font-serif text-4xl sm:text-5xl lg:text-[56px] tracking-[-0.02em] leading-[1.1] text-foreground">
@@ -125,7 +125,7 @@ export default async function DecodageArticlePage(
                     <span className="opacity-50">·</span>
                     <span>{article.readTime} de lecture</span>
                     <span className="opacity-50">·</span>
-                    <span className="text-accent">{article.pilote}</span>
+                    <span className="text-accent-ink">{article.pilote}</span>
                   </div>
                 </Reveal>
 
@@ -142,7 +142,7 @@ export default async function DecodageArticlePage(
                     <Reveal key={section.id} variant="up" delay={i * 0.05}>
                       <section id={section.id} className="scroll-mt-32">
                         <h2 className="font-serif text-2xl sm:text-3xl tracking-[-0.01em] leading-[1.25] text-foreground mb-8">
-                          <span className="text-accent mr-3 font-normal tabular">
+                          <span className="text-accent-ink mr-3 font-normal tabular">
                             {section.num} —
                           </span>
                           {section.heading}
@@ -184,7 +184,7 @@ export default async function DecodageArticlePage(
 
                 {/* Conclusion */}
                 <Reveal variant="up" className="mt-16 pt-12 border-t border-accent">
-                  <p className="smallcaps text-[12px] tracking-[0.22em] text-accent mb-6">
+                  <p className="smallcaps text-[12px] tracking-[0.22em] text-accent-ink mb-6">
                     En conclusion
                   </p>
                   <p className="editorial-body font-serif text-xl sm:text-2xl leading-[1.5] text-foreground">

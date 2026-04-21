@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { ArrowRight, Calendar, Clock, Video, MapPin } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -39,6 +39,38 @@ export default function BookingPicker() {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [format, setFormat] = useState<Format>("presentiel");
   const [confirmed, setConfirmed] = useState(false);
+  const dayButtonsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const slotButtonsRef = useRef<(HTMLButtonElement | null)[]>([]);
+
+  function handleDayKeyDown(e: ReactKeyboardEvent<HTMLButtonElement>, index: number) {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = (index + 1) % days.length;
+      dayButtonsRef.current[next]?.focus();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = (index - 1 + days.length) % days.length;
+      dayButtonsRef.current[prev]?.focus();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      dayButtonsRef.current[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      dayButtonsRef.current[days.length - 1]?.focus();
+    }
+  }
+
+  function handleSlotKeyDown(e: ReactKeyboardEvent<HTMLButtonElement>, index: number) {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = (index + 1) % SLOTS_PER_DAY.length;
+      slotButtonsRef.current[next]?.focus();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = (index - 1 + SLOTS_PER_DAY.length) % SLOTS_PER_DAY.length;
+      slotButtonsRef.current[prev]?.focus();
+    }
+  }
 
   if (confirmed) {
     return (
@@ -78,7 +110,7 @@ export default function BookingPicker() {
       {/* Header */}
       <div className="p-6 lg:p-8 border-b border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <p className="smallcaps text-[12px] tracking-[0.18em] text-accent mb-2">
+          <p className="smallcaps text-[12px] tracking-[0.18em] text-accent-ink mb-2">
             Premier rendez-vous — 30 minutes
           </p>
           <p className="font-serif text-xl text-foreground">
@@ -124,13 +156,18 @@ export default function BookingPicker() {
         <p className="text-[10px] uppercase tracking-[0.22em] text-muted mb-4">
           Date
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
-          {days.map((d) => {
+        <div role="radiogroup" aria-label="Jour du rendez-vous" className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+          {days.map((d, i) => {
             const isSelected = d.toDateString() === selectedDay.toDateString();
             return (
               <button
                 key={d.toISOString()}
+                ref={(el) => { dayButtonsRef.current[i] = el; }}
                 type="button"
+                role="radio"
+                aria-checked={isSelected}
+                tabIndex={isSelected ? 0 : -1}
+                onKeyDown={(e) => handleDayKeyDown(e, i)}
                 onClick={() => {
                   setSelectedDay(d);
                   setSelectedSlot(null);
@@ -161,13 +198,18 @@ export default function BookingPicker() {
         <p className="text-[10px] uppercase tracking-[0.22em] text-muted mb-4">
           Créneaux disponibles · {formatDay(selectedDay)}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {SLOTS_PER_DAY.map((slot) => {
+        <div role="radiogroup" aria-label="Heure du rendez-vous" className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {SLOTS_PER_DAY.map((slot, i) => {
             const isSelected = slot === selectedSlot;
             return (
               <button
                 key={slot}
+                ref={(el) => { slotButtonsRef.current[i] = el; }}
                 type="button"
+                role="radio"
+                aria-checked={isSelected}
+                tabIndex={isSelected || (selectedSlot === null && i === 0) ? 0 : -1}
+                onKeyDown={(e) => handleSlotKeyDown(e, i)}
                 onClick={() => setSelectedSlot(slot)}
                 className={`py-4 font-serif text-lg tabular border transition-all ${
                   isSelected

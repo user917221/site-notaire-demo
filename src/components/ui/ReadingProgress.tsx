@@ -61,11 +61,14 @@ export default function ReadingProgress({
   }, [targetSelector]);
 
   return (
-    <div
-      ref={barRef}
-      className={`reading-progress ${className}`}
-      style={{ width: "100%", transform: "scaleX(0)" }}
-      aria-hidden="true"
-    />
+    <>
+      <div className="reading-progress-track" aria-hidden="true" />
+      <div
+        ref={barRef}
+        className={`reading-progress ${className}`}
+        style={{ width: "100%", transform: "scaleX(0)" }}
+        aria-hidden="true"
+      />
+    </>
   );
 }

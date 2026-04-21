@@ -74,7 +74,7 @@ export default function Equipe() {
                         </p>
                       </div>
                       <p className="text-[14px] text-foreground/80 leading-relaxed border-t border-border/60 pt-4">
-                        <span className="text-accent">→</span> {notaire.specialty}
+                        <span className="text-accent-ink">→</span> {notaire.specialty}
                       </p>
                       <p className="text-[13px] text-muted leading-relaxed italic border-l-2 border-accent/40 pl-4">
                         « {notaire.petitPlus} »
@@ -94,7 +94,7 @@ export default function Equipe() {
         <Reveal variant="up" delay={0.4} className="mt-20 text-center">
           <Link
             href="/equipe"
-            className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.14em] text-foreground hover:text-accent transition-colors group"
+            className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.14em] text-foreground hover:text-accent-ink transition-colors group"
           >
             <span className="link-editorial">Toute l'équipe — 3 notaires + 15 collaborateurs</span>
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

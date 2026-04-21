@@ -114,7 +114,7 @@ export default function EquipePage() {
                       <p className="mt-3 text-[12px] uppercase tracking-[0.18em] text-muted">
                         {notaire.role}
                       </p>
-                      <p className="mt-2 text-base text-accent">{notaire.specialty}</p>
+                      <p className="mt-2 text-base text-accent-ink">{notaire.specialty}</p>
 
                       <p className="mt-10 text-lg text-foreground/85 leading-relaxed">
                         {notaire.bio}
@@ -168,14 +168,14 @@ export default function EquipePage() {
                         <h3 className="font-serif text-2xl tracking-[-0.01em] text-foreground">
                           {c.pole}
                         </h3>
-                        <span className="font-serif text-3xl text-accent tabular-nums">
+                        <span className="font-serif text-3xl text-accent-ink tabular-nums">
                           {String(c.count).padStart(2, "0")}
                         </span>
                       </div>
                       <p className="text-[15px] text-muted leading-relaxed mb-6">
                         {c.description}
                       </p>
-                      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-accent-ink">
                         Référent · {c.referent}
                       </p>
                     </div>

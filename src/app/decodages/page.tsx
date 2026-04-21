@@ -75,12 +75,12 @@ export default function DecodagesPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
                           <div className="lg:col-span-2 flex lg:flex-col items-start gap-6 lg:gap-4">
                             {Art && (
-                              <div className="text-foreground/50 group-hover:text-accent transition-colors duration-500 shrink-0">
+                              <div className="text-foreground/50 group-hover:text-accent-ink transition-colors duration-500 shrink-0">
                                 <Art className="w-16 h-12 lg:w-20 lg:h-14" />
                               </div>
                             )}
                             <div>
-                              <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+                              <p className="text-[11px] uppercase tracking-[0.18em] text-accent-ink">
                                 {article.category}
                               </p>
                               <p className="mt-2 text-[12px] text-muted">
@@ -88,7 +88,7 @@ export default function DecodagesPage() {
                               </p>
                             </div>
                           </div>
-                          <h2 className="lg:col-span-7 font-serif text-2xl sm:text-3xl lg:text-[34px] tracking-[-0.01em] text-foreground leading-[1.2] group-hover:text-accent transition-colors">
+                          <h2 className="lg:col-span-7 font-serif text-2xl sm:text-3xl lg:text-[34px] tracking-[-0.01em] text-foreground leading-[1.2] group-hover:text-accent-ink transition-colors">
                             {article.title}
                           </h2>
                           <div className="lg:col-span-3 flex flex-col items-start lg:items-end gap-2">
@@ -97,7 +97,7 @@ export default function DecodagesPage() {
                             </p>
                             <ArrowUpRight
                               size={20}
-                              className="text-muted/40 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
+                              className="text-muted/40 group-hover:text-accent-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
                             />
                           </div>
                         </div>

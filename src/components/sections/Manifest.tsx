@@ -11,8 +11,8 @@ export default function Manifest() {
       <DiagonalPattern className="text-foreground" opacity={0.025} />
       <div className="relative mx-auto max-w-5xl px-6 lg:px-10 z-10">
         <Reveal variant="up">
-          <Frise variant="diamond" className="text-accent mb-10" />
-          <p className="text-[11px] uppercase tracking-[0.28em] text-accent mb-10 text-center">
+          <Frise variant="diamond" className="text-accent-ink mb-10" />
+          <p className="text-[11px] uppercase tracking-[0.28em] text-accent-ink mb-10 text-center">
             Manifeste
           </p>
         </Reveal>

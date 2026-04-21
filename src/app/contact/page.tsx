@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
 import BookingPicker from "@/components/ui/BookingPicker";
+import ContactForm from "./ContactForm";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -19,17 +20,6 @@ const HORAIRES = [
   { jour: "Vendredi", h: "9h–12h30  ·  14h–17h" },
   { jour: "Samedi", h: "Sur rendez-vous uniquement" },
   { jour: "Dimanche", h: "Fermé" },
-];
-
-const SUJETS = [
-  "Achat / vente immobilier",
-  "Succession (règlement, partage)",
-  "Donation / transmission",
-  "Famille (mariage, PACS, divorce)",
-  "Conseil patrimonial",
-  "Succession internationale",
-  "Actifs numériques",
-  "Autre — précisez",
 ];
 
 export default function ContactPage() {
@@ -93,175 +83,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
               {/* Formulaire */}
               <Reveal variant="up" className="lg:col-span-7">
-                <form className="space-y-8" aria-label="Formulaire de contact">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="firstname"
-                        className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-3"
-                      >
-                        Prénom
-                      </label>
-                      <input
-                        type="text"
-                        id="firstname"
-                        name="firstname"
-                        required
-                        className="w-full bg-transparent border-b border-border/60 py-3 text-foreground focus:border-accent focus:outline-none transition-colors text-[15px]"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="lastname"
-                        className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-3"
-                      >
-                        Nom
-                      </label>
-                      <input
-                        type="text"
-                        id="lastname"
-                        name="lastname"
-                        required
-                        className="w-full bg-transparent border-b border-border/60 py-3 text-foreground focus:border-accent focus:outline-none transition-colors text-[15px]"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-3"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="w-full bg-transparent border-b border-border/60 py-3 text-foreground focus:border-accent focus:outline-none transition-colors text-[15px]"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-3"
-                      >
-                        Téléphone
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        className="w-full bg-transparent border-b border-border/60 py-3 text-foreground focus:border-accent focus:outline-none transition-colors text-[15px]"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="sujet"
-                      className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-3"
-                    >
-                      Sujet du rendez-vous
-                    </label>
-                    <select
-                      id="sujet"
-                      name="sujet"
-                      required
-                      className="w-full bg-transparent border-b border-border/60 py-3 text-foreground focus:border-accent focus:outline-none transition-colors text-[15px]"
-                    >
-                      <option value="">Choisir un sujet…</option>
-                      {SUJETS.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-3"
-                    >
-                      Votre message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      placeholder="Décrivez en quelques lignes votre situation ou votre projet."
-                      className="w-full bg-transparent border-b border-border/60 py-3 text-foreground focus:border-accent focus:outline-none transition-colors text-[15px] resize-none placeholder:text-muted/60"
-                    />
-                  </div>
-
-                  <fieldset>
-                    <legend className="block text-[11px] uppercase tracking-[0.18em] text-muted mb-4">
-                      Format préféré
-                    </legend>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <label className="flex items-center gap-3 cursor-pointer text-[14px] text-foreground/80">
-                        <input
-                          type="radio"
-                          name="format"
-                          value="presentiel"
-                          defaultChecked
-                          className="accent-[var(--accent)]"
-                        />
-                        Présentiel à Lyon
-                      </label>
-                      <label className="flex items-center gap-3 cursor-pointer text-[14px] text-foreground/80">
-                        <input
-                          type="radio"
-                          name="format"
-                          value="visio"
-                          className="accent-[var(--accent)]"
-                        />
-                        Visioconférence
-                      </label>
-                      <label className="flex items-center gap-3 cursor-pointer text-[14px] text-foreground/80">
-                        <input
-                          type="radio"
-                          name="format"
-                          value="appel"
-                          className="accent-[var(--accent)]"
-                        />
-                        Appel téléphonique
-                      </label>
-                    </div>
-                  </fieldset>
-
-                  <label className="flex items-start gap-3 cursor-pointer text-[13px] text-muted leading-relaxed">
-                    <input
-                      type="checkbox"
-                      name="rgpd"
-                      required
-                      className="mt-1 accent-[var(--accent)]"
-                    />
-                    <span>
-                      J'accepte que mes données soient traitées par l'étude
-                      pour répondre à ma demande, conformément au RGPD et à
-                      notre{" "}
-                      <a href="/mentions-legales#rgpd" className="link-editorial">
-                        politique de confidentialité
-                      </a>
-                      .
-                    </span>
-                  </label>
-
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background text-[12px] uppercase tracking-[0.12em] hover:bg-accent transition-colors w-full sm:w-auto"
-                  >
-                    Envoyer ma demande
-                  </button>
-
-                  <p className="text-[12px] text-muted/80 italic">
-                    Le secrétariat vous recontacte sous 24 h ouvrées.
-                  </p>
-                </form>
+                <ContactForm />
               </Reveal>
 
               {/* Coordonnées */}
@@ -289,7 +111,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href={`tel:${SITE.contact.phone.replace(/\s+/g, "")}`}
-                      className="font-serif text-2xl text-foreground hover:text-accent transition-colors block"
+                      className="font-serif text-2xl text-foreground hover:text-accent-ink transition-colors block"
                     >
                       {SITE.contact.phone}
                     </a>
@@ -306,7 +128,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href={`mailto:${SITE.contact.email}`}
-                      className="font-serif text-xl text-foreground hover:text-accent transition-colors block break-all"
+                      className="font-serif text-xl text-foreground hover:text-accent-ink transition-colors block break-all"
                     >
                       {SITE.contact.email}
                     </a>

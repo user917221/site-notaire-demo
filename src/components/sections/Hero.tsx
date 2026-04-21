@@ -35,7 +35,7 @@ export default function Hero() {
         className="absolute top-[100px] right-6 lg:right-10 hidden md:block opacity-0 animate-[fadeIn_1s_1s_ease-out_forwards] z-20"
         aria-hidden="true"
       >
-        <Sceau size={72} className="text-accent/40" />
+        <Sceau size={72} className="text-accent-ink/40" />
       </div>
 
       <div className="relative flex-1 flex flex-col mx-auto max-w-7xl w-full px-6 lg:px-10 pt-32 pb-20 sm:pb-28 lg:pb-32 z-10">

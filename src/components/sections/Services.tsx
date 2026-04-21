@@ -46,16 +46,16 @@ export default function Services() {
                     className="group block p-8 sm:p-10 lg:p-12 h-full transition-colors duration-500 hover:bg-surface/40 focus-visible:bg-surface/40 focus-visible:outline-none"
                   >
                     <div className="flex items-start justify-between mb-8">
-                      <span className="font-serif text-[13px] tracking-[0.18em] text-accent">
+                      <span className="font-serif text-[13px] tracking-[0.18em] text-accent-ink">
                         {service.number}
                       </span>
                       <ArrowUpRight
                         size={18}
-                        className="text-muted/40 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
+                        className="text-muted/40 group-hover:text-accent-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
                       />
                     </div>
                     {Icon && (
-                      <div className="mb-8 text-foreground/60 group-hover:text-accent transition-colors duration-500">
+                      <div className="mb-8 text-foreground/60 group-hover:text-accent-ink transition-colors duration-500">
                         <Icon size={48} />
                       </div>
                     )}

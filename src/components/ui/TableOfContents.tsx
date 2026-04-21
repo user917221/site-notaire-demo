@@ -122,7 +122,7 @@ export default function TableOfContents({
                 }}
               >
                 {item.num && (
-                  <span className="font-serif text-accent mr-2 text-[12px]">
+                  <span className="font-serif text-accent-ink mr-2 text-[12px]">
                     {item.num}
                   </span>
                 )}

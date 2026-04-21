@@ -67,7 +67,7 @@ export function Sidenote({
         className={`sidenote ${variant === "marge" ? "float-right" : ""} ${className}`}
       >
         {marker && (
-          <span className="text-accent font-serif italic mr-1.5">{marker}</span>
+          <span className="text-accent-ink font-serif italic mr-1.5">{marker}</span>
         )}
         {children}
       </aside>

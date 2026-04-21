@@ -132,7 +132,7 @@ export default function EtudePage() {
                 <li key={v.title} className="bg-background">
                   <Reveal variant="up" delay={i * 0.08}>
                     <div className="p-10 lg:p-12 h-full">
-                      <span className="font-serif text-[13px] tracking-[0.18em] text-accent">
+                      <span className="font-serif text-[13px] tracking-[0.18em] text-accent-ink">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <h3 className="font-serif text-2xl tracking-[-0.01em] text-foreground mt-6 mb-5">
@@ -168,7 +168,7 @@ export default function EtudePage() {
                   className="grid grid-cols-12 gap-6 py-10 border-t border-border/60 last:border-b"
                 >
                   <Reveal variant="up" delay={i * 0.05} className="col-span-3 lg:col-span-2">
-                    <span className="font-serif text-3xl lg:text-4xl text-accent tracking-[-0.01em]">
+                    <span className="font-serif text-3xl lg:text-4xl text-accent-ink tracking-[-0.01em]">
                       {event.year}
                     </span>
                   </Reveal>
@@ -187,7 +187,7 @@ export default function EtudePage() {
             <Reveal variant="up" delay={0.4} className="mt-16 text-center">
               <Link
                 href="/equipe"
-                className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.14em] text-foreground hover:text-accent transition-colors group"
+                className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.14em] text-foreground hover:text-accent-ink transition-colors group"
               >
                 <span className="link-editorial">Rencontrer les notaires associés</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

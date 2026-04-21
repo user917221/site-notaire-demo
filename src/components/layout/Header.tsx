@@ -76,7 +76,7 @@ export default function Header({ dark = false }: HeaderProps) {
             className={`inline-flex items-center justify-center w-7 h-7 border transition-colors duration-500 ${
               transparent
                 ? "border-white/40 text-white/80"
-                : "border-accent/60 text-accent"
+                : "border-accent/60 text-accent-ink"
             }`}
           >
             <span className="font-serif text-[11px] tracking-[0.05em] leading-none">
@@ -217,7 +217,7 @@ export default function Header({ dark = false }: HeaderProps) {
                             <Link
                               href={child.href}
                               onClick={() => setMobileOpen(false)}
-                              className={`font-serif text-3xl sm:text-4xl text-foreground hover:text-accent transition-colors ${focusRing}`}
+                              className={`font-serif text-3xl sm:text-4xl text-foreground hover:text-accent-ink transition-colors ${focusRing}`}
                             >
                               {child.label}
                             </Link>
@@ -233,7 +233,7 @@ export default function Header({ dark = false }: HeaderProps) {
                       <Link
                         href={item.href}
                         onClick={() => setMobileOpen(false)}
-                        className={`font-serif text-3xl sm:text-4xl text-foreground hover:text-accent transition-colors ${focusRing}`}
+                        className={`font-serif text-3xl sm:text-4xl text-foreground hover:text-accent-ink transition-colors ${focusRing}`}
                       >
                         {item.label}
                       </Link>
@@ -244,7 +244,7 @@ export default function Header({ dark = false }: HeaderProps) {
                   <Link
                     href="/contact"
                     onClick={() => setMobileOpen(false)}
-                    className={`font-serif text-3xl sm:text-4xl text-foreground hover:text-accent transition-colors ${focusRing}`}
+                    className={`font-serif text-3xl sm:text-4xl text-foreground hover:text-accent-ink transition-colors ${focusRing}`}
                   >
                     Prendre rendez-vous
                   </Link>

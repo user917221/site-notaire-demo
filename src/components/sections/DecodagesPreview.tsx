@@ -75,12 +75,12 @@ export default function DecodagesPreview() {
                     )}
                     <div className="p-8">
                       <div className="flex items-center justify-between mb-6">
-                        <span className="text-[10px] uppercase tracking-[0.18em] text-accent">
+                        <span className="text-[10px] uppercase tracking-[0.18em] text-accent-ink">
                           {article.category}
                         </span>
                         <ArrowUpRight
                           size={16}
-                          className="text-muted/40 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
+                          className="text-muted/40 group-hover:text-accent-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
                         />
                       </div>
                       <h3 className="font-serif text-xl sm:text-[22px] tracking-[-0.005em] text-foreground leading-[1.25] mb-5">
@@ -104,7 +104,7 @@ export default function DecodagesPreview() {
         <Reveal variant="up" delay={0.4} className="mt-16 text-center">
           <Link
             href="/decodages"
-            className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.14em] text-foreground hover:text-accent transition-colors group"
+            className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.14em] text-foreground hover:text-accent-ink transition-colors group"
           >
             <span className="link-editorial">Tous les décodages</span>
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

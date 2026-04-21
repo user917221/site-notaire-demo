@@ -90,7 +90,7 @@ export default function CalculateurPage() {
                 <li key={i} className="border-b border-border py-10">
                   <Reveal variant="up" delay={i * 0.05}>
                     <h3 className="font-serif text-xl sm:text-2xl tracking-[-0.005em] leading-[1.3] text-foreground mb-4">
-                      <span className="text-accent mr-3 tabular">
+                      <span className="text-accent-ink mr-3 tabular">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       {faq.q}

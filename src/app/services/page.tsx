@@ -89,7 +89,7 @@ export default function ServicesPage() {
                     {/* Texte */}
                     <Reveal variant="up" delay={0.1} className="lg:col-span-7 lg:[direction:ltr]">
                       <div className="flex items-baseline gap-6 mb-6">
-                        <span className="font-serif text-[13px] tracking-[0.18em] text-accent">
+                        <span className="font-serif text-[13px] tracking-[0.18em] text-accent-ink">
                           {service.number}
                         </span>
                         {Icon && (
