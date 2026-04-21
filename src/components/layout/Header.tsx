@@ -73,7 +73,7 @@ export default function Header({ dark = false }: HeaderProps) {
         >
           <span
             aria-hidden="true"
-            className={`inline-flex items-center justify-center w-7 h-7 border transition-colors duration-500 ${
+            className={`var-shared-logo inline-flex items-center justify-center w-7 h-7 border transition-colors duration-500 ${
               transparent
                 ? "border-white/40 text-white/80"
                 : "border-accent/60 text-accent-ink"
