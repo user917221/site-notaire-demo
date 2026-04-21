@@ -5,6 +5,7 @@ import HeroVisual from "@/components/ui/HeroVisual";
 import Sceau from "@/components/ui/Sceau";
 import MagneticButton from "@/components/ui/MagneticButton";
 import NotarialSignature from "@/components/ui/NotarialSignature";
+import GravityWell from "@/components/ui/GravityWell";
 
 export default function Hero() {
   // Mots avec délais individuels pour stagger

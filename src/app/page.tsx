@@ -4,6 +4,7 @@ import Hero from "@/components/sections/Hero";
 import StatsBand from "@/components/sections/StatsBand";
 import Credentials from "@/components/sections/Credentials";
 import Services from "@/components/sections/Services";
+import PinnedMethode from "@/components/sections/PinnedMethode";
 import Specialites from "@/components/sections/Specialites";
 import Manifest from "@/components/sections/Manifest";
 import Equipe from "@/components/sections/Equipe";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <StatsBand />
         <Services />
+        <PinnedMethode />
         <Specialites />
         <Manifest />
         <Equipe />
