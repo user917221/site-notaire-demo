@@ -7,6 +7,7 @@ import GrainOverlay from "@/components/providers/GrainOverlay";
 import EditorialLoader from "@/components/providers/EditorialLoader";
 import CustomCursor from "@/components/providers/CustomCursor";
 import KonamiEasterEgg from "@/components/providers/KonamiEasterEgg";
+import AccentDrift from "@/components/providers/AccentDrift";
 import { SITE } from "@/lib/constants";
 
 const inter = Inter({
@@ -90,6 +91,8 @@ export default function RootLayout({
         <JsonLd />
         <EditorialLoader />
         <CustomCursor />
+        <KonamiEasterEgg />
+        <AccentDrift />
         <a href="#main" className="skip-link">
           Aller au contenu
         </a>
