@@ -43,6 +43,7 @@ export default function Services() {
                 <Reveal variant="up" delay={i * 0.08}>
                   <Link
                     href={`/services#${service.id}`}
+                    data-cursor="ouvrir"
                     className="group block p-8 sm:p-10 lg:p-12 h-full transition-colors duration-500 hover:bg-surface/40 focus-visible:bg-surface/40 focus-visible:outline-none"
                   >
                     <div className="flex items-start justify-between mb-8">

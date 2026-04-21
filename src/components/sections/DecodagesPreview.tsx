@@ -53,6 +53,7 @@ export default function DecodagesPreview() {
                 <Reveal variant="up" delay={i * 0.1}>
                   <Link
                     href={`/decodages/${article.slug}`}
+                    data-cursor="lire"
                     className="group block h-full border border-border/60 hover:border-foreground transition-all duration-500 bg-background hover:bg-surface/40"
                   >
                     {/* Photo + SVG art en overlay */}

@@ -44,7 +44,7 @@ export default function Equipe() {
                 <Reveal variant="up" delay={i * 0.1}>
                   <article className="group">
                     {/* Portrait — vraie photo Unsplash en N&B */}
-                    <div className="relative aspect-[4/5] mb-8 overflow-hidden bg-[var(--surface-2)]">
+                    <div data-cursor="agrandir" className="relative aspect-[4/5] mb-8 overflow-hidden bg-[var(--surface-2)]">
                       {portrait && (
                         <Image
                           src={portrait.url}

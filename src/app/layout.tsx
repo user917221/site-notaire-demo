@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import GrainOverlay from "@/components/providers/GrainOverlay";
 import EditorialLoader from "@/components/providers/EditorialLoader";
+import CustomCursor from "@/components/providers/CustomCursor";
 import { SITE } from "@/lib/constants";
 
 const inter = Inter({
@@ -87,6 +88,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <JsonLd />
         <EditorialLoader />
+        <CustomCursor />
         <a href="#main" className="skip-link">
           Aller au contenu
         </a>

@@ -330,6 +330,21 @@ abbr.acronym,
   animation: subtlePulse 3.5s ease-in-out infinite;
 }
 
+/* Custom cursor — masque le curseur natif sur desktop quand actif */
+html.custom-cursor-active,
+html.custom-cursor-active body,
+html.custom-cursor-active a,
+html.custom-cursor-active button,
+html.custom-cursor-active [role="button"] {
+  cursor: none !important;
+}
+/* Garder cursor natif sur inputs / textarea (text edit nécessaire) */
+html.custom-cursor-active input,
+html.custom-cursor-active textarea,
+html.custom-cursor-active select {
+  cursor: text !important;
+}
+
 /* TextReveal — line-by-line stagger */
 @keyframes textRevealLine {
   from { opacity: 0; transform: translate3d(0, 110%, 0); }
