@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from "react";
 /**
  * Custom cursor — pattern Awwwards.
  *
- * Suit le curseur avec lerp 0.18, morphe selon le contexte de hover :
- * - Défaut : petit cercle 8px
- * - data-cursor="link" : ring 36px avec flèche
- * - data-cursor="lire" : pill "LIRE →"
- * - data-cursor="ouvrir" : pill "OUVRIR →"
- * - data-cursor="agrandir" : pill "AGRANDIR ⌖"
+ * Suit le curseur avec lerp, morphe selon le contexte de hover :
+ * - Défaut : petit cercle 10px
+ * - Auto link/button : ring 44px avec flèche
+ * - data-cursor='lire' : pill 'LIRE →'
+ * - data-cursor='ouvrir' : pill 'OUVRIR →'
+ * - data-cursor='agrandir' : pill 'AGRANDIR →'
  *
  * Désactivé sur touch + reduced-motion + pointer:coarse.
  */
@@ -35,59 +35,55 @@ export default function CustomCursor() {
     // Disable sur touch / reduced-motion / coarse pointer
     const fine = window.matchMedia("(pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isTouch = "ontouchstart" in window;
+    const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     if (!fine || reduced || isTouch) return;
 
     setEnabled(true);
     document.documentElement.classList.add("custom-cursor-active");
-
-    const cursor = cursorRef.current;
-    if (!cursor) return;
 
     let targetX = window.innerWidth / 2;
     let targetY = window.innerHeight / 2;
     let currentX = targetX;
     let currentY = targetY;
     let raf = 0;
+    let firstMove = false;
+
+    const detectVariant = (target: HTMLElement | null): CursorVariant => {
+      let el: HTMLElement | null = target;
+      let depth = 0;
+      while (el && el !== document.body && depth < 8) {
+        const data = el.getAttribute?.("data-cursor");
+        if (data) return data as CursorVariant;
+        const tag = el.tagName?.toLowerCase();
+        if (tag === "input" || tag === "textarea" || tag === "select") return "hidden";
+        if (tag === "a" || tag === "button") return "link";
+        el = el.parentElement;
+        depth++;
+      }
+      return "default";
+    };
 
     const onMove = (e: MouseEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
-      if (!visible) setVisible(true);
-
-      // Detect cursor variant via data-cursor attribute (walk up tree)
-      let target: HTMLElement | null = e.target as HTMLElement;
-      let detected: CursorVariant = "default";
-      while (target && target !== document.body) {
-        const data = target.getAttribute?.("data-cursor");
-        if (data) {
-          detected = data as CursorVariant;
-          break;
-        }
-        // Fallback : input/textarea = hidden, links/buttons = link
-        const tag = target.tagName?.toLowerCase();
-        if (tag === "input" || tag === "textarea" || tag === "select") {
-          detected = "hidden";
-          break;
-        }
-        if (tag === "a" || tag === "button") {
-          detected = "link";
-          break;
-        }
-        target = target.parentElement;
+      if (!firstMove) {
+        firstMove = true;
+        setVisible(true);
       }
-      setVariant(detected);
+      const detected = detectVariant(e.target as HTMLElement);
+      setVariant((prev) => (prev === detected ? prev : detected));
     };
 
     const onLeave = () => setVisible(false);
     const onEnter = () => setVisible(true);
 
     const animate = () => {
-      const dx = targetX - currentX;
-      const dy = targetY - currentY;
-      currentX += dx * 0.22;
-      currentY += dy * 0.22;
-      cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+      const el = cursorRef.current;
+      if (el) {
+        currentX += (targetX - currentX) * 0.24;
+        currentY += (targetY - currentY) * 0.24;
+        el.style.transform = `translate3d(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px, 0) translate(-50%, -50%)`;
+      }
       raf = requestAnimationFrame(animate);
     };
 
@@ -103,7 +99,9 @@ export default function CustomCursor() {
       cancelAnimationFrame(raf);
       document.documentElement.classList.remove("custom-cursor-active");
     };
-  }, [visible]);
+    // ⚠️ Empty deps — l'effet se monte UNE seule fois.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!enabled) return null;
 
@@ -115,18 +113,18 @@ export default function CustomCursor() {
     <div
       ref={cursorRef}
       aria-hidden="true"
-      className="fixed top-0 left-0 z-[200] pointer-events-none mix-blend-difference"
+      className="fixed top-0 left-0 z-[200] pointer-events-none"
       style={{
         willChange: "transform",
         opacity: isHidden ? 0 : 1,
-        transition: "opacity 0.2s ease-out",
+        transition: "opacity 0.25s ease-out",
       }}
     >
       <div
-        className="flex items-center justify-center bg-background text-foreground rounded-full transition-[width,height,padding] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="flex items-center justify-center bg-foreground text-background rounded-full transition-[width,height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-lg shadow-foreground/20"
         style={{
-          width: isPill ? "120px" : isLink ? "44px" : "10px",
-          height: isPill ? "44px" : isLink ? "44px" : "10px",
+          width: isPill ? "120px" : isLink ? "44px" : "12px",
+          height: isPill ? "44px" : isLink ? "44px" : "12px",
         }}
       >
         {isPill && (
@@ -135,7 +133,7 @@ export default function CustomCursor() {
             <span className="ml-1.5">→</span>
           </span>
         )}
-        {isLink && <span className="text-[14px]">→</span>}
+        {isLink && <span className="text-[14px] leading-none">→</span>}
       </div>
     </div>
   );
